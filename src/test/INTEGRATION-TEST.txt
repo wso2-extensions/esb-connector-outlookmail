@@ -1,0 +1,69 @@
+Product: WSO2 ESB Connector for Outlook Mail + Integration Tests
+
+Pre-requisites:
+
+ - Maven 3.x
+ - Java 1.6 or above
+ - The org.wso2.esb.integration.integration-base project is required. The test suite has been configured to download this project automatically. If the automatic download fails, download the following project and compile it using the mvn clean install command to update your local repository:
+       https://github.com/wso2-extensions/esb-integration-base
+
+Tested Platform:
+
+ - Microsoft WINDOWS V-7
+ - UBUNTU 14.04, Mac OSx 10.9
+ - WSO2 ESB 4.9.0
+
+STEPS:
+
+1. Download ESB 4.9.0 from official site and copy that zip file in to location "{OutlookMail_Connector_Home}/repository/".
+
+2. The ESB should be configured as below;
+   	Please make sure that the below mentioned Axis configurations are enabled (\repository\conf\axis2\axis2.xml).
+
+    <messageFormatter contentType="application/x-www-form-urlencoded"
+                             class="org.apache.axis2.transport.http.XFormURLEncodedFormatter"/>
+   	<messageBuilder contentType="application/x-www-form-urlencoded"
+                           class="org.apache.synapse.commons.builders.XFormURLEncodedBuilder"/>
+
+   	Note: Add the above message formatter and the corresponding message builder only if they are not available in the axis configurations.
+
+3. Set authorization details:
+  1. Sign up for an Office 365 account (Go to https://products.office.com/en-us/business/compare-office-365-for-business-plans).
+
+  2. Associate an Azure subscription with Office 365 account (Azure AD).(Go to https://msdn.microsoft.com/office/office365/howto/setup-development-environment#bk_AssociateNewAzureSubscription)
+
+  3. Register a new application in the Azure classic portal.(Go to https://azure.microsoft.com/en-us/documentation/articles/active-directory-integrating-applications/#BKMK_Native)
+
+
+4. Update the property file at outlookmail.properties found in  to "{OutlookMail_Connector_Home}/src/test/resources/artifacts/ESB/connector/config/" as follows.
+
+
+       i)apiUrl 							- 	The instance URL for your organization.
+       ii)apiVersion                        -   The api version of the Outlook Mail API.
+       ii)refreshToken                      -   The refresh token to access the API.
+       iv)clientId                          -   The client ID of the client application that is registered in Azure AD.
+       v)clientSecret                       -   The value of the key that contains the client password.
+       vi)accessToken				        -   Value of the Access Token to access the Outlook Mail API via request.
+       vii)redirectUri                      -   Specifies the reply URL of the application. The value must match the value of the
+                                                redirect_uri parameter in the authorization code request.
+       viii)resource                        -   The Office 365 resource your app wants to access. As you want to access Office 365 Calendar, Contact, and Mail APIs this is “https://outlook.office365.com/“.
+       ix) registryPath                     -   Registry Path of the Connector where the values are stored
+       x)intervalTime                       -   The Interval time to check the accessToken validity
+     xi) folderId The folder ID
+xii) deleteFolderId The folder ID to delete.
+xiii) moveFolderId The folder ID to move.
+xiv) displayName The display name of the folder.
+xv) destinationId The destination folder ID.
+xvi)messageId The message ID.
+xvii) attachmentId The attachment ID.
+xviii) name The name of the attachment.
+xix) oDataType The Open Data Protocol (OData) enables the creation of HTTP-based data services.
+xx) contentBytes The file to attach.
+xxi)comment The comment to reply.
+xxii) subject The subject of the mail.
+xxiii)content The content body of the mail.
+xxiv) MessageContentType The contentType for body of the mail.
+
+
+5. Navigate to "{{OutlookMail_Connector_Home}/" and run the following command.
+      $ mvn clean install

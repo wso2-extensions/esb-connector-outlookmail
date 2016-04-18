@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+<template name="init" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="accessToken"
+               description="Value of the Access Token to access the Outlook Mail API via request."/>
+    <parameter name="apiUrl" description="The instance URL for your organization."/>
+    <parameter name="apiVersion" description="The api version of the Outlook Mail API."/>
+    <parameter name="refreshToken" description="value of the refresh token."/>
+    <parameter name="clientSecret"
+               description="The value of the key that contains the client password."/>
+    <parameter name="clientId"
+               description="The client ID of the client application that is registered in Azure AD."/>
+    <parameter name="redirectUri"
+               description="Specifies the reply URL of the application. The value must match the value of the
+               redirect_uri parameter in the authorization code request."/>
+    <parameter name="resource"
+               description="The App ID URI of the web API."/>
+    <parameter name="registryPath"
+               description="Registry Path of the Connector where the values are stored."/>
+    <parameter name="intervalTime" description="The Interval time to check the accessToken validity."/>
+    <sequence>
+        <property name="uri.var.accessToken" expression="$func:accessToken"/>
+        <property name="uri.var.apiUrl" expression="$func:apiUrl"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <property name="uri.var.refreshToken" expression="$func:refreshToken"/>
+        <property name="uri.var.clientSecret" expression="$func:clientSecret"/>
+        <property name="uri.var.clientId" expression="$func:clientId"/>
+        <property name="uri.var.redirectUri" expression="$func:redirectUri"/>
+        <property name="uri.var.clientId" expression="$func:clientId"/>
+        <property name="uri.var.resource" expression="$func:resource"/>
+        <property name="uri.var.intervalTime" expression="$func:intervalTime"/>
+        <property name="uri.var.registryPath" expression="$func:registryPath"/>
+
+        <filter source="boolean($ctx:uri.var.refreshToken) and boolean($ctx:uri.var.clientSecret) and
+         boolean($ctx:uri.var.clientId) and boolean($ctx:uri.var.accessToken) and boolean($ctx:uri.var.resource)
+         and boolean($ctx:uri.var.redirectUri)" regex="true">
+            <then>
+                <filter source="boolean($ctx:uri.var.intervalTime)" regex="false">
+                    <then>
+                        <property name="uri.var.intervalTime"
+                                  value="3000000"/>
+                    </then>
+                </filter>
+                <filter source="boolean(get-property('uri.var.registryPath'))" regex="false">
+                    <then>
+                        <property name="uri.var.accessTokenRegistryPath"
+                                  value="connectors/OutlookMail/accessToken"/>
+                        <property name="uri.var.refreshTokenRegistryPath"
+                                  value="connectors/OutlookMail/refreshToken"/>
+                        <property name="uri.var.timeRegistryPath"
+                                  value="connectors/OutlookMail/time"/>
+                    </then>
+                    <else>
+                        <property name="uri.var.accessTokenRegistryPath"
+                                  expression="fn:concat($ctx:uri.var.registryPath, '/accessToken' )"/>
+                        <property name="uri.var.refreshTokenRegistryPath"
+                                  expression="fn:concat($ctx:uri.var.registryPath, '/refreshToken' )"/>
+                        <property name="uri.var.timeRegistryPath"
+                                  expression="fn:concat($ctx:uri.var.registryPath, '/time' )"/>
+                    </else>
+                </filter>
+                <property name="uri.var.accessToken.reg"
+                          expression="get-property('registry', $ctx:uri.var.accessTokenRegistryPath)"/>
+                <property name="uri.var.refreshToken.reg"
+                          expression="get-property('registry', $ctx:uri.var.refreshTokenRegistryPath)"/>
+                <property name="systemTime" expression="get-property('SYSTEM_TIME')" scope="default"/>
+                <filter source="$ctx:uri.var.accessToken.reg=''" regex="true">
+                    <then>
+                        <script language="js">
+                            <![CDATA[
+                           importPackage(Packages.org.apache.synapse.config);
+                           var newAccess = mc.getProperty('uri.var.accessToken');
+                           var newRefresh = mc.getProperty('uri.var.refreshToken');
+                           var newAccessRegistryPath = mc.getProperty('uri.var.accessTokenRegistryPath');
+                           var newRefreshRegistryPath = mc.getProperty('uri.var.refreshTokenRegistryPath');
+                           var newSysTime = mc.getProperty('systemTime');
+                           var newTimeRegistryPath = mc.getProperty('uri.var.timeRegistryPath');
+                           if(newAccess != null && newAccess != '' && newRefresh != null && newRefresh != '' ){
+                               //Create the registry entry if no such entry exists.
+                               mc.getConfiguration().getRegistry().newResource(newAccessRegistryPath,false);
+                               mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath,newAccess);
+                               mc.getConfiguration().getRegistry().newResource(newRefreshRegistryPath,false);
+                               mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath,newRefresh);
+                               mc.getConfiguration().getRegistry().newResource(newTimeRegistryPath, false);
+                               mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSysTime);
+                           }
+                           ]]>
+                        </script>
+                    </then>
+                    <else>
+                        <property name="uri.var.accessToken" expression="$ctx:uri.var.accessToken.reg"/>
+                        <property name="uri.var.refreshToken" expression="$ctx:uri.var.refreshToken.reg"/>
+                    </else>
+                </filter>
+                <property name="registryTime"
+                          expression="get-property('registry', $ctx:uri.var.timeRegistryPath)"/>
+                <script language="js"><![CDATA[
+                    var time1 = mc.getProperty("systemTime");
+                    var time2 = mc.getProperty("registryTime");
+                    var timeTaken = time1 - time2;
+                    mc.setProperty("INTERVAL_TIME", timeTaken);
+                   ]]>
+                </script>
+                <!--If the access token is not in the registry(first call) or time interval less than 50 minutes ,
+                 then get a new access token by calling getAccessTokenFromRefreshToken method and store the time into
+                 registry-->
+                <filter source="$ctx:INTERVAL_TIME &gt;$ctx:uri.var.intervalTime or $ctx:uri.var.accessToken=''"
+                        regex="true">
+                    <then>
+                        <outlookmail.getAccessTokenFromRefreshToken/>
+                    </then>
+                </filter>
+            </then>
+        </filter>
+        <header name="Authorization" expression="fn:concat('Bearer  ', $ctx:uri.var.accessToken )" scope="transport"/>
+    </sequence>
+</template>

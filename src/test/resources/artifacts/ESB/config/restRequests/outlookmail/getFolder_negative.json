@@ -1,0 +1,12 @@
+{
+  "apiUrl":"%s(apiUrl)",
+  "refreshToken":"%s(refreshToken)",
+  "clientSecret":"%s(clientSecret)",
+  "clientId":"%s(clientId)",
+  "resource":"%s(resource)",
+  "redirectUri":"%s(redirectUri)",
+  "registryPath":"%s(registryPath)",
+  "intervalTime":"%s(intervalTime)",
+  "accessToken":"",
+  "apiVersion":"%s(apiVersion)"
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~    http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+
+<template name="createAttachment" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="messageId" description="The message ID."/>
+    <parameter name="oDataType" description="The Open Data Protocol (OData) enables the creation of HTTP-based data
+    services."/>
+    <parameter name="name" description="The name of the attachment."/>
+    <parameter name="contentBytes" description="The file to attach."/>
+
+    <sequence>
+        <property name="uri.var.messageId" expression="$func:messageId"/>
+        <property name="uri.var.oDataType" expression="$func:oDataType"/>
+        <property name="uri.var.name" expression="$func:name"/>
+        <property name="uri.var.contentBytes" expression="$func:contentBytes"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                    "@odata.type":"$1",
+                    "Name":"$2",
+                    "ContentBytes":"$3"
+                }
+            </format>
+            <args>
+                <arg expression="$ctx:uri.var.oDataType"/>
+                <arg expression="$ctx:uri.var.name"/>
+                <arg expression="$ctx:uri.var.contentBytes"/>
+            </args>
+        </payloadFactory>
+        <call>
+            <endpoint>
+                <http method="POST"
+                      uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/me/messages/{+uri.var.messageId}/attachments"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

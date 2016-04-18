@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~    http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+
+<template name="sendMail" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="subject" description="The subject of the mail."/>
+    <parameter name="messageContentType" description="The contentType for body of the mail."/>
+    <parameter name="content" description="The content body of the mail."/>
+    <parameter name="toRecipients" description="The receiver of the mail."/>
+    <parameter name="attachments"
+               description="The attachments of the mail."/>
+    <parameter name="saveToSentItems" description="Indicates whether to save the message in Sent Items."/>
+    <sequence>
+        <property name="uri.var.subject" expression="$func:subject"/>
+        <property name="uri.var.messageContentType" expression="$func:messageContentType"/>
+        <property name="uri.var.content" expression="$func:content"/>
+        <property name="uri.var.toRecipients" expression="$func:toRecipients"/>
+        <property name="uri.var.attachments" expression="$func:attachments"/>
+        <property name="uri.var.saveToSentItems" expression="$func:saveToSentItems"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                    "Message":
+                    {
+                        "ToRecipients":$1,
+                        "Body":
+                            {
+                                "ContentType": "$2",
+                                "Content": "$3"
+                            }
+                    }
+                }
+            </format>
+            <args>
+                <arg expression="$ctx:uri.var.toRecipients"/>
+                <arg expression="$ctx:uri.var.messageContentType"/>
+                <arg expression="$ctx:uri.var.content"/>
+            </args>
+        </payloadFactory>
+        <script language="js">
+            <![CDATA[
+                var payload = mc.getPayloadJSON();
+                var subject = mc.getProperty('uri.var.subject');
+                var attachments = mc.getProperty('uri.var.attachments');
+                var messageContentType = mc.getProperty('uri.var.messageContentType');
+                var content = mc.getProperty('uri.var.content');
+                var saveToSentItems = mc.getProperty('uri.var.saveToSentItems');
+
+                if (subject != null && subject != "") {
+                    payload.Message.Subject = subject;
+                }
+                if (messageContentType == null && messageContentType == "") {
+                    delete payload.Message.Body.ContentType;
+                }
+                if (content == null && content == "") {
+                    delete payload.Message.Body.Content;
+                }
+                if (attachments != null && attachments != "" && attachments!="[]") {
+                    if(attachments.charCodeAt(0) == '91' ) {
+                        payload.Message.Attachments = eval( "(" + attachments + ")" );
+                    }
+                }
+                if (saveToSentItems != null && saveToSentItems != "") {
+                   payload.SaveToSentItems = saveToSentItems;
+                }
+                mc.setPayloadJSON(payload);
+                mc.setProperty("content", content);
+             ]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="POST" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/me/sendmail"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

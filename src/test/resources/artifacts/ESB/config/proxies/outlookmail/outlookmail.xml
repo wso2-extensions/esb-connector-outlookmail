@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+WSO2 Inc. licenses this file to you under the Apache License,
+Version 2.0 (the "License"); you may not use this file except
+in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<proxy name="outlookmail" startOnLoad="true" statistics="disable" trace="disable"
+       transports="https,http"
+       xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property name="apiUrl" expression="json-eval($.apiUrl)"/>
+            <property name="apiVersion" expression="json-eval($.apiVersion)"/>
+            <property name="accessToken" expression="json-eval($.accessToken)"/>
+            <property name="refreshToken" expression="json-eval($.refreshToken)"/>
+            <property name="clientSecret" expression="json-eval($.clientSecret)"/>
+            <property name="clientId" expression="json-eval($.clientId)"/>
+            <property name="resource" expression="json-eval($.resource)"/>
+            <property name="redirectUri" expression="json-eval($.redirectUri)"/>
+            <property name="registryPath" expression="json-eval($.registryPath)"/>
+            <property name="intervalTime" expression="json-eval($.intervalTime)"/>
+            <property name="folderId" expression="json-eval($.folderId)"/>
+            <property name="displayName" expression="json-eval($.displayName)"/>
+            <property name="destinationId" expression="json-eval($.destinationId)"/>
+            <property name="messageId" expression="json-eval($.messageId)"/>
+            <property name="attachmentId" expression="json-eval($.attachmentId)"/>
+            <property name="oDataType" expression="json-eval($.oDataType)"/>
+            <property name="name" expression="json-eval($.name)"/>
+            <property name="contentBytes" expression="json-eval($.contentBytes)"/>
+            <property name="toRecipients" expression="json-eval($.toRecipients)"/>
+            <property name="comment" expression="json-eval($.comment)"/>
+            <property name="subject" expression="json-eval($.subject)"/>
+            <property name="messageContentType" expression="json-eval($.messageContentType)"/>
+            <property name="content" expression="json-eval($.content)"/>
+            <property name="attachments" expression="json-eval($.attachments)"/>
+            <property name="saveToSentItems" expression="json-eval($.saveToSentItems)"/>
+
+            <outlookmail.init>
+                <apiUrl>{$ctx:apiUrl}</apiUrl>
+                <apiVersion>{$ctx:apiVersion}</apiVersion>
+                <refreshToken>{$ctx:refreshToken}</refreshToken>
+                <clientSecret>{$ctx:clientSecret}</clientSecret>
+                <clientId>{$ctx:clientId}</clientId>
+                <resource>{$ctx:resource}</resource>
+                <redirectUri>{$ctx:redirectUri}</redirectUri>
+                <accessToken>{$ctx:accessToken}</accessToken>
+                <registryPath>{$ctx:registryPath}</registryPath>
+                <intervalTime>{$ctx:intervalTime}</intervalTime>
+            </outlookmail.init>
+            <switch source="get-property('transport', 'Action')">
+                <case regex="urn:createFolder">
+                    <outlookmail.createFolder>
+                        <folderId>{$ctx:folderId}</folderId>
+                        <displayName>{$ctx:displayName}</displayName>
+                    </outlookmail.createFolder>
+                </case>
+                <case regex="urn:getFolder">
+                    <outlookmail.getFolder> </outlookmail.getFolder>
+                </case>
+                <case regex="urn:getChildFolder">
+                    <outlookmail.getChildFolder>
+                        <folderId>{$ctx:folderId}</folderId>
+                    </outlookmail.getChildFolder>
+                </case>
+                <case regex="urn:deleteFolder">
+                    <outlookmail.deleteFolder>
+                        <folderId>{$ctx:folderId}</folderId>
+                    </outlookmail.deleteFolder>
+                </case>
+                <case regex="urn:moveFolder">
+                    <outlookmail.moveFolder>
+                        <destinationId>{$ctx:destinationId}</destinationId>
+                        <folderId>{$ctx:folderId}</folderId>
+                    </outlookmail.moveFolder>
+                </case>
+                <case regex="urn:getAttachmentCollection">
+                    <outlookmail.getAttachmentCollection>
+                        <messageId>{$ctx:messageId}</messageId>
+                    </outlookmail.getAttachmentCollection>
+                </case>
+                <case regex="urn:getAttachment">
+                    <outlookmail.getAttachment>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <attachmentId>{$ctx:attachmentId}</attachmentId>
+                    </outlookmail.getAttachment>
+                </case>
+                <case regex="urn:deleteAttachment">
+                    <outlookmail.deleteAttachment>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <attachmentId>{$ctx:attachmentId}</attachmentId>
+                    </outlookmail.deleteAttachment>
+                </case>
+                <case regex="urn:createAttachment">
+                    <outlookmail.createAttachment>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <oDataType>{$ctx:oDataType}</oDataType>
+                        <name>{$ctx:name}</name>
+                        <contentBytes>{$ctx:contentBytes}</contentBytes>
+                    </outlookmail.createAttachment>
+                </case>
+                <case regex="urn:getMessage">
+                    <outlookmail.getMessage>
+                        <messageId>{$ctx:messageId}</messageId>
+                    </outlookmail.getMessage>
+                </case>
+                <case regex="urn:getMessageCollectionFromFolder">
+                    <outlookmail.getMessageCollectionFromFolder>
+                        <folderId>{$ctx:folderId}</folderId>
+                    </outlookmail.getMessageCollectionFromFolder>
+                </case>
+                <case regex="urn:deleteMessage">
+                    <outlookmail.deleteMessage>
+                        <messageId>{$ctx:messageId}</messageId>
+                    </outlookmail.deleteMessage>
+                </case>
+                <case regex="urn:forwardAMessage">
+                    <outlookmail.forwardAMessage>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <toRecipients>{$ctx:toRecipients}</toRecipients>
+                        <comment>{$ctx:comment}</comment>
+                    </outlookmail.forwardAMessage>
+                </case>
+                <case regex="urn:moveMessage">
+                    <outlookmail.moveMessage>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <destinationId>{$ctx:destinationId}</destinationId>
+                    </outlookmail.moveMessage>
+                </case>
+                <case regex="urn:replyToAll">
+                    <outlookmail.replyToAll>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <comment>{$ctx:comment}</comment>
+                    </outlookmail.replyToAll>
+                </case>
+                <case regex="urn:replyToSender">
+                    <outlookmail.replyToSender>
+                        <messageId>{$ctx:messageId}</messageId>
+                        <comment>{$ctx:comment}</comment>
+                    </outlookmail.replyToSender>
+                </case>
+                <case regex="urn:sendMail">
+                    <outlookmail.sendMail>
+                        <subject>{$ctx:subject}</subject>
+                        <messageContentType>{$ctx:messageContentType}</messageContentType>
+                        <content>{$ctx:content}</content>
+                        <toRecipients>{$ctx:toRecipients}</toRecipients>
+                        <attachments>{$ctx:attachments}</attachments>
+                        <saveToSentItems>{$ctx:saveToSentItems}</saveToSentItems>
+                    </outlookmail.sendMail>
+                </case>
+            </switch>
+            <respond/>
+        </inSequence>
+    </target>
+    <description/>
+</proxy>

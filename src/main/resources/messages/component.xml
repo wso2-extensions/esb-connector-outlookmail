@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~    http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+
+<component name="messages" type="synapse/template">
+    <subComponents>
+        <component name="getMessage">
+            <file>getMessage.xml</file>
+            <description>Get a message by ID.</description>
+        </component>
+        <component name="getMessageCollection">
+            <file>getMessageCollection.xml</file>
+            <description>Get a message collection from the entire mailbox.</description>
+        </component>
+        <component name="getMessageCollectionFromFolder">
+            <file>getMessageCollectionFromFolder.xml</file>
+            <description>Get the message collection from that folder.</description>
+        </component>
+        <component name="sendMail">
+            <file>sendMail.xml</file>
+            <description>Send the message.</description>
+        </component>
+        <component name="replyToSender">
+            <file>replyToSender.xml</file>
+            <description>Reply to the sender of a message.</description>
+        </component>
+        <component name="replyToAll">
+            <file>replyToAll.xml</file>
+            <description>Reply to all recipients of a message.</description>
+        </component>
+        <component name="forwardMessage">
+            <file>forwardMessage.xml</file>
+            <description>Forward a message.</description>
+        </component>
+        <component name="deleteMessage">
+            <file>deleteMessage.xml</file>
+            <description>Delete a message.</description>
+        </component>
+        <component name="moveMessage">
+            <file>moveMessage.xml</file>
+            <description>Move a message to a folder.</description>
+        </component>
+        <component name="copyMessage">
+            <file>copyMessage.xml</file>
+            <description>Copy a message to a folder.</description>
+        </component>
+    </subComponents>
+</component>
