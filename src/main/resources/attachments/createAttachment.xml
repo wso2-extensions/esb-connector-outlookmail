@@ -23,7 +23,6 @@
     services."/>
     <parameter name="name" description="The name of the attachment."/>
     <parameter name="contentBytes" description="The file to attach."/>
-
     <sequence>
         <property name="uri.var.messageId" expression="$func:messageId"/>
         <property name="uri.var.oDataType" expression="$func:oDataType"/>

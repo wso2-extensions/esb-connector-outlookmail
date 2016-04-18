@@ -21,15 +21,15 @@
     <subComponents>
         <component name="init">
             <file>init.xml</file>
-            <description>Init operation</description>
+            <description>Init operation.</description>
         </component>
         <component name="getAccessTokenFromRefreshToken">
             <file>getAccessTokenFromRefreshToken.xml</file>
-            <description>Getting Access Token from refresh token operation</description>
+            <description>Getting Access Token from refresh token operation.</description>
         </component>
         <component name="getAccessTokenFromAuthorizationCode">
             <file>getAccessTokenFromAuthorizationCode.xml</file>
-            <description>Get AccessToken From Code operation</description>
+            <description>Get AccessToken From Code operation.</description>
         </component>
     </subComponents>
 </component>

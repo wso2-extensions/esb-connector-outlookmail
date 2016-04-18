@@ -21,7 +21,6 @@
                description="The client ID of the client application that is registered in Azure AD."/>
     <parameter name="resource"
                description="The App ID URI of the web API."/>
-
     <sequence>
         <property name="uri.var.refreshToken" expression="$func:refreshToken"/>
         <property name="uri.var.clientSecret" expression="$func:clientSecret"/>
@@ -78,18 +77,18 @@
                 var existingRefreshToken = mc.getConfiguration().getRegistry().getResource(newRefreshRegistryPath);
                 var existingTime = mc.getConfiguration().getRegistry().getResource(newTimeRegistryPath);
                 if(existingAccessToken == null && existingRefreshToken == null){
-                  // Create the registry entry if no such entry exists.
-                      mc.getConfiguration().getRegistry().newResource(newAccessRegistryPath, false);
-                      mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath, newAccessToken);
-                      mc.getConfiguration().getRegistry().newResource(newRefreshRegistryPath, false);
-                      mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath, newRefreshToken);
-                      mc.getConfiguration().getRegistry().newResource(newTimeRegistryPath, false);
-                      mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSystemTime);
+                  //Create the registry entry if no such entry exists.
+                    mc.getConfiguration().getRegistry().newResource(newAccessRegistryPath, false);
+                    mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath, newAccessToken);
+                    mc.getConfiguration().getRegistry().newResource(newRefreshRegistryPath, false);
+                    mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath, newRefreshToken);
+                    mc.getConfiguration().getRegistry().newResource(newTimeRegistryPath, false);
+                    mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSystemTime);
                 } else {
                   // Update the registry entry if it already exists.
-                      mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath, newAccessToken);
-                      mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath, newRefreshToken);
-                      mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSystemTime);
+                    mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath, newAccessToken);
+                    mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath, newRefreshToken);
+                    mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSystemTime);
                 }
              }
          ]]>

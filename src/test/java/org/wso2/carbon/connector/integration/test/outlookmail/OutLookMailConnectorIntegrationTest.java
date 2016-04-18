@@ -25,8 +25,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.wso2.connector.integration.test.base.ConnectorIntegrationTestBase;
 import org.wso2.connector.integration.test.base.RestResponse;
-
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,11 +50,10 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
 
         String accessToken = connectorProperties.getProperty("accessToken");
         apiRequestHeadersMap.put("Authorization", "Bearer " + accessToken);
-
     }
 
-   /* *//**
-     * Positive test case for createFolder method with mandatory parameters..
+    /**
+     * Positive test case for createFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {createFolder} integration test with mandatory parameters.")
     public void testCreateFolderWithMandatoryParameters() throws IOException, JSONException {
@@ -69,7 +66,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for createFolder method with mandatory parameters..
+     * Negative test case for createFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {createFolder} integration test with negative case.")
     public void testCreateFolderNegativeCase() throws IOException, JSONException {
@@ -81,8 +78,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for createFolder method with mandatory parameters..
-   *//*  */
+     * Positive test case for createFolder method with mandatory parameters.
+   */
     @Test(enabled = true, description = "outlookmail {getFolder} integration test with mandatory parameters.")
     public void testGetFolderWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getFolder");
@@ -100,7 +97,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for createFolder method with mandatory parameters..
+     * Negative test case for createFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {getFolder} integration test with negative case.")
     public void testGetFolderWithNegativeCase() throws IOException, JSONException {
@@ -113,8 +110,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for createFolder method with mandatory parameters..
-     *//*  */
+     * Positive test case for createFolder method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {getChildFolder} integration test with mandatory parameters.")
     public void testGetChildFolderWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getChildFolder");
@@ -133,7 +130,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for getChildFolder method with mandatory parameters..
+     * Negative test case for getChildFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {getFolder} integration test with negative case.")
     public void testGetChildFolderWithNegativeCase() throws IOException, JSONException {
@@ -146,8 +143,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for deleteFolder method with mandatory parameters..
-     *//*  */
+     * Positive test case for deleteFolder method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {deleteFolder} integration test with mandatory parameters.")
     public void testDeleteFolderWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:deleteFolder");
@@ -159,7 +156,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for deleteFolder method with mandatory parameters..
+     * Negative test case for deleteFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {deleteFolder} integration test with negative case.")
     public void testDeleteFolderWithNegativeCase() throws IOException, JSONException {
@@ -172,8 +169,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for moveFolder method with mandatory parameters..
-     *//*  */
+     * Positive test case for moveFolder method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {moveFolder} integration test with mandatory parameters.")
     public void testMoveFolderWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:moveFolder");
@@ -185,7 +182,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for moveFolder method with mandatory parameters..
+     * Negative test case for moveFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {moveFolder} integration test with negative case.")
     public void testMoveFolderWithNegativeCase() throws IOException, JSONException {
@@ -198,8 +195,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for getAttachmentCollection method with mandatory parameters..
-     *//*  */
+     * Positive test case for getAttachmentCollection method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {getAttachmentCollection} integration test with mandatory " +
             "parameters.")
     public void testGetAttachmentCollectionWithMandatoryParameters() throws IOException, JSONException {
@@ -219,7 +216,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for getAttachmentCollection method with mandatory parameters..
+     * Negative test case for getAttachmentCollection method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {getAttachmentCollection} integration test with negative case.")
     public void testGetAttachmentCollectionWithNegativeCase() throws IOException, JSONException {
@@ -232,8 +229,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for getAttachment method with mandatory parameters..
-     *//*  */
+     * Positive test case for getAttachment method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {getAttachment} integration test with mandatory parameters.")
     public void testGetAttachmentMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getAttachment");
@@ -253,7 +250,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for getAttachment method with mandatory parameters..
+     * Negative test case for getAttachment method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {getAttachment} integration test with negative case.")
     public void testGetAttachmentWithNegativeCase() throws IOException, JSONException {
@@ -266,8 +263,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for deleteAttachment method with mandatory parameters..
-     *//*  */
+     * Positive test case for deleteAttachment method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {deleteAttachment} integration test with mandatory parameters.")
     public void testDeleteAttachmentWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:deleteAttachment");
@@ -279,7 +276,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for deleteAttachment method with mandatory parameters..
+     * Negative test case for deleteAttachment method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {deleteAttachment} integration test with negative case.")
     public void testDeleteAttachmentWithNegativeCase() throws IOException, JSONException {
@@ -291,8 +288,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 401);
     }
 
-    /* *//**//**
-     * Positive test case for createAttachment method with mandatory parameters..
+     /**
+     * Positive test case for createAttachment method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {createAttachment} integration test with mandatory parameters.")
     public void testCreateAttachmentWithMandatoryParameters() throws IOException, JSONException {
@@ -305,7 +302,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for createAttachment method with mandatory parameters..
+     * Negative test case for createAttachment method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {createAttachment} integration test with negative case.")
     public void testCreateAttachmentWithNegativeCase() throws IOException, JSONException {
@@ -318,8 +315,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for getMessage method with mandatory parameters..
-     *//*  */
+     * Positive test case for getMessage method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {getMessage} integration test with mandatory parameters.")
     public void testGetMessageMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getMessage");
@@ -338,7 +335,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for getMessage method with mandatory parameters..
+     * Negative test case for getMessage method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {getMessage} integration test with negative case.")
     public void testGetMessageWithNegativeCase() throws IOException, JSONException {
@@ -351,8 +348,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for getMessageCollectionFromFolder method with mandatory parameters..
-     *//*  */
+     * Positive test case for getMessageCollectionFromFolder method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {getMessageCollectionFromFolder} integration test with mandatory " +
             "parameters.")
     public void testGetMessageCollectionFromFolderWithMandatoryParameters() throws IOException, JSONException {
@@ -372,7 +369,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for getMessageCollectionFromFolder method with mandatory parameters..
+     * Negative test case for getMessageCollectionFromFolder method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {getMessage} integration test with negative case.")
     public void testGetMessageCollectionFromFolderWithNegativeCase() throws IOException, JSONException {
@@ -385,8 +382,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for deleteMessage method with mandatory parameters..
-     *//*  */
+     * Positive test case for deleteMessage method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {deleteMessage} integration test with mandatory parameters.")
     public void testDeleteMessageWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:deleteMessage");
@@ -398,7 +395,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for deleteMessage method with mandatory parameters..
+     * Negative test case for deleteMessage method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {deleteMessage} integration test with negative case.")
     public void testDeleteMessageWithNegativeCase() throws IOException, JSONException {
@@ -411,8 +408,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for deleteMessage method with mandatory parameters..
-     *//*  */
+     * Positive test case for deleteMessage method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {forwardAMessage} integration test with mandatory parameters.")
     public void testForwardAMessageWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:forwardAMessage");
@@ -424,7 +421,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for deleteMessage method with mandatory parameters..
+     * Negative test case for deleteMessage method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {forwardAMessage} integration test with negative case.")
     public void testForwardAMessageWithNegativeCase() throws IOException, JSONException {
@@ -437,8 +434,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for moveMessage method with mandatory parameters..
-     *//*  */
+     * Positive test case for moveMessage method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {moveMessage} integration test with mandatory parameters.")
     public void testMoveMessageWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:moveMessage");
@@ -450,7 +447,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for deleteMessage method with mandatory parameters..
+     * Negative test case for deleteMessage method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {moveMessage} integration test with negative case.")
     public void testMoveMessageWithNegativeCase() throws IOException, JSONException {
@@ -463,8 +460,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for replyToAll method with mandatory parameters..
-     *//*  */
+     * Positive test case for replyToAll method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {replyToAll} integration test with mandatory parameters.")
     public void testReplyToAllWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:replyToAll");
@@ -482,7 +479,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for replyToAll method with mandatory parameters..
+     * Negative test case for replyToAll method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {moveMessage} integration test with negative case.")
     public void testReplyToAllWithNegativeCase() throws IOException, JSONException {
@@ -495,8 +492,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for replyToSender method with mandatory parameters..
-     *//*  */
+     * Positive test case for replyToSender method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {replyToSender} integration test with mandatory parameters.")
     public void testReplyToSenderWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:replyToSender");
@@ -514,7 +511,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Negative test case for replyToAll method with mandatory parameters..
+     * Negative test case for replyToAll method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {replyToSender} integration test with negative case.")
     public void testReplyToSenderWithNegativeCase() throws IOException, JSONException {
@@ -527,8 +524,8 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
     }
 
     /**
-     * Positive test case for sendMail method with mandatory parameters..
-     /*  */
+     * Positive test case for sendMail method with mandatory parameters.
+     */
     @Test(enabled = true, description = "outlookmail {sendMail} integration test with mandatory parameters.")
     public void testSendMailWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:sendMail");
@@ -538,8 +535,9 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
 
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 202);
     }
+
     /**
-     * Negative test case for replyToAll method with mandatory parameters..
+     * Negative test case for replyToAll method with mandatory parameters.
      */
     @Test(enabled = true, description = "outlookmail {sendMail} integration test with negative case.")
     public void testSendMailWithNegativeCase() throws IOException, JSONException {
