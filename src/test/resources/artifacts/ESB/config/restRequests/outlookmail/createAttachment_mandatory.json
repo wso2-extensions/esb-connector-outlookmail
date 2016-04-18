@@ -1,0 +1,16 @@
+{
+  "apiUrl":"%s(apiUrl)",
+  "apiVersion":"%s(apiVersion)",
+  "refreshToken":"%s(refreshToken)",
+  "clientSecret":"%s(clientSecret)",
+  "clientId":"%s(clientId)",
+  "resource":"%s(resource)",
+  "redirectUri":"%s(redirectUri)",
+  "registryPath":"%s(registryPath)",
+  "intervalTime":"%s(intervalTime)",
+  "accessToken":"%s(accessToken)",
+  "messageId":"%s(messageId)",
+  "oDataType":"%s(oDataType)",
+  "name":"%s(name)",
+  "contentBytes":"%s(contentBytes)"
+}

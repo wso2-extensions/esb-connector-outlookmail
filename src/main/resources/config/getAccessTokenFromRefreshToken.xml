@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+   WSO2 Inc. licenses this file to you under the Apache License,
+   Version 2.0 (the "License"); you may not use this file except
+   in compliance with the License.
+   You may obtain a copy of the License at
+   http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+<template name="getAccessTokenFromRefreshToken" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="refreshToken" description="The value of the refresh token."/>
+    <parameter name="clientSecret"
+               description="The value of the key that contains the client password."/>
+    <parameter name="clientId"
+               description="The client ID of the client application that is registered in Azure AD."/>
+    <parameter name="resource"
+               description="The App ID URI of the web API."/>
+    <sequence>
+        <property name="uri.var.refreshToken" expression="$func:refreshToken"/>
+        <property name="uri.var.clientSecret" expression="$func:clientSecret"/>
+        <property name="uri.var.clientId" expression="$func:clientId"/>
+        <property name="uri.var.resource" expression="$func:resource"/>
+        <property name="uri.var.grantType" value="refresh_token"/>
+        <payloadFactory media-type="xml">
+            <format>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                    <soapenv:Header></soapenv:Header>
+                    <soapenv:Body>
+                        <root>
+                            <refresh_token>$1</refresh_token>
+                            <grant_type>refresh_token</grant_type>
+                            <client_secret>$2</client_secret>
+                            <client_id>$3</client_id>
+                            <resource>$4</resource>
+                        </root>
+                    </soapenv:Body>
+                </soapenv:Envelope>
+            </format>
+            <args>
+                <arg expression="$ctx:uri.var.refreshToken"/>
+                <arg expression="$ctx:uri.var.clientSecret"/>
+                <arg expression="$ctx:uri.var.clientId"/>
+                <arg expression="$ctx:uri.var.resource"/>
+            </args>
+        </payloadFactory>
+
+        <property name="messageType" value="application/x-www-form-urlencoded"
+                  scope="axis2" />
+        <property name="REQUEST_HOST_HEADER" scope="axis2" value="login.microsoftonline.com"/>
+        <property name="DISABLE_CHUNKING" value="true" scope="axis2"/>
+        <call>
+            <endpoint>
+                <http method="POST" uri-template="https://login.microsoftonline.com/common/oauth2/token"/>
+            </endpoint>
+        </call>
+        <!-- Setting the new access token and new refresh token to the property. -->
+        <property name="uri.var.accessToken" expression="json-eval($.access_token)"/>
+        <property name="uri.var.refreshToken" expression="json-eval($.refresh_token)"/>
+        <property name="systemTime" expression="get-property('SYSTEM_TIME')" scope="default"/>
+        <script language="js">
+            <![CDATA[
+             importPackage(Packages.org.apache.synapse.config);
+             var newAccessToken = mc.getProperty('uri.var.accessToken');
+             var newRefreshToken = mc.getProperty('uri.var.refreshToken');
+             var newSystemTime = mc.getProperty('systemTime');
+             var newAccessRegistryPath = mc.getProperty('uri.var.accessTokenRegistryPath');
+             var newRefreshRegistryPath = mc.getProperty('uri.var.refreshTokenRegistryPath');
+             var newTimeRegistryPath = mc.getProperty('uri.var.timeRegistryPath');
+             if(newAccessToken != null && newAccessToken != '' && newRefreshToken != null && newRefreshToken != ''){
+                var existingAccessToken = mc.getConfiguration().getRegistry().getResource(newAccessRegistryPath);
+                var existingRefreshToken = mc.getConfiguration().getRegistry().getResource(newRefreshRegistryPath);
+                var existingTime = mc.getConfiguration().getRegistry().getResource(newTimeRegistryPath);
+                if(existingAccessToken == null && existingRefreshToken == null){
+                  //Create the registry entry if no such entry exists.
+                    mc.getConfiguration().getRegistry().newResource(newAccessRegistryPath, false);
+                    mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath, newAccessToken);
+                    mc.getConfiguration().getRegistry().newResource(newRefreshRegistryPath, false);
+                    mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath, newRefreshToken);
+                    mc.getConfiguration().getRegistry().newResource(newTimeRegistryPath, false);
+                    mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSystemTime);
+                } else {
+                  // Update the registry entry if it already exists.
+                    mc.getConfiguration().getRegistry().updateResource(newAccessRegistryPath, newAccessToken);
+                    mc.getConfiguration().getRegistry().updateResource(newRefreshRegistryPath, newRefreshToken);
+                    mc.getConfiguration().getRegistry().updateResource(newTimeRegistryPath, newSystemTime);
+                }
+             }
+         ]]>
+        </script>
+    </sequence>
+</template>
