@@ -38,32 +38,31 @@ STEPS:
 4. Update the property file at outlookmail.properties found in  to "{OutlookMail_Connector_Home}/src/test/resources/artifacts/ESB/connector/config/" as follows.
 
 
-       i)apiUrl 							- 	The instance URL for your organization.
+       i)apiUrl 						                     	- 	 The instance URL for your organization.
        ii)apiVersion                        -   The api version of the Outlook Mail API.
        ii)refreshToken                      -   The refresh token to access the API.
        iv)clientId                          -   The client ID of the client application that is registered in Azure AD.
        v)clientSecret                       -   The value of the key that contains the client password.
-       vi)accessToken				        -   Value of the Access Token to access the Outlook Mail API via request.
-       vii)redirectUri                      -   Specifies the reply URL of the application. The value must match the value of the
-                                                redirect_uri parameter in the authorization code request.
-       viii)resource                        -   The Office 365 resource your app wants to access. As you want to access Office 365 Calendar, Contact, and Mail APIs this is “https://outlook.office365.com/“.
+       vi)accessToken				                   -   Value of the Access Token to access the Outlook Mail API via request.
+       vii)redirectUri                      -   Specifies the reply URL of the application. The value must match the value                                          of the redirect_uri parameter in the authorization code request.
+       viii)resource                        -   The Office 365 resource your app wants to access. As you want to access                                             Office 365 Calendar, Contact, and Mail APIs this is “https://outlook                                                .office365.com/“.
        ix) registryPath                     -   Registry Path of the Connector where the values are stored
-       x)intervalTime                       -   The Interval time to check the accessToken validity
-     xi) folderId The folder ID
-xii) deleteFolderId The folder ID to delete.
-xiii) moveFolderId The folder ID to move.
-xiv) displayName The display name of the folder.
-xv) destinationId The destination folder ID.
-xvi)messageId The message ID.
-xvii) attachmentId The attachment ID.
-xviii) name The name of the attachment.
-xix) oDataType The Open Data Protocol (OData) enables the creation of HTTP-based data services.
-xx) contentBytes The file to attach.
-xxi)comment The comment to reply.
-xxii) subject The subject of the mail.
-xxiii)content The content body of the mail.
-xxiv) MessageContentType The contentType for body of the mail.
+        x)intervalTime                      -   The Interval time to check the accessToken validity
+       xi) folderId                         -   The folder ID
+      xii) deleteFolderId                   -   The folder ID to delete.
+     xiii) moveFolderId                     -   The folder ID to move.
+      xiv) displayName                      -   The display name of the folder.
+       xv) destinationId                    -   The destination folder ID.
+      xvi) messageId                        -   The message ID.
+     xvii) attachmentId                     -   The attachment ID.
+    xviii) name                             -   The name of the attachment.
+      xix) oDataType                        -   The Open Data Protocol (OData) enables the creation of HTTP-based data                                               services.
+       xx) contentBytes                     -   The file to attach.
+      xxi) comment                          -   The comment to reply.
+     xxii) subject                          -   The subject of the mail.
+    xxiii) content                          -   The content body of the mail.
+     xxiv) MessageContentType               -   The contentType for body of the mail.
 
 
-5. Navigate to "{{OutlookMail_Connector_Home}/" and run the following command.
+5. Navigate to "{OutlookMail_Connector_Home}/" and run the following command.
       $ mvn clean install
