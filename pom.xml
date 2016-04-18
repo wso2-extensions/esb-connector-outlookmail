@@ -23,7 +23,7 @@
     <groupId>org.wso2.carbon.connector</groupId>
     <artifactId>org.wso2.carbon.connector.outlookmail</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>WSO2 Carbon - Mediation Library Connector For outlookmail</name>
     <url>http://wso2.org</url>
     <properties>
@@ -133,12 +133,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <scm>
-        <connection>scm:git:https://github.com/wso2-extensions/esb-connector-outlookmail.git</connection>
-        <url>https://github.com/wso2-extensions/esb-connector-outlookmail.git</url>
-        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-outlookmail</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
     <build>
         <plugins>
             <plugin>
