@@ -25,11 +25,11 @@
         </component>
         <component name="getAccessTokenFromRefreshToken">
             <file>getAccessTokenFromRefreshToken.xml</file>
-            <description>Getting Access Token from refresh token operation.</description>
+            <description>Getting the access token from refresh token operation.</description>
         </component>
         <component name="getAccessTokenFromAuthorizationCode">
             <file>getAccessTokenFromAuthorizationCode.xml</file>
-            <description>Get AccessToken From Code operation.</description>
+            <description>Getting the access token from code operation.</description>
         </component>
     </subComponents>
 </component>

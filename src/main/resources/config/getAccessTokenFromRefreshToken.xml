@@ -14,7 +14,7 @@
    under the License.
 -->
 <template name="getAccessTokenFromRefreshToken" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="refreshToken" description="value of the refresh token."/>
+    <parameter name="refreshToken" description="The value of the refresh token."/>
     <parameter name="clientSecret"
                description="The value of the key that contains the client password."/>
     <parameter name="clientId"

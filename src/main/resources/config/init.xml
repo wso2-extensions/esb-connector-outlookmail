@@ -18,10 +18,10 @@
   -->
 <template name="init" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="accessToken"
-               description="Value of the Access Token to access the Outlook Mail API via request."/>
+               description="The value of the Access Token to access the Outlook Mail API via request."/>
     <parameter name="apiUrl" description="The instance URL for your organization."/>
     <parameter name="apiVersion" description="The api version of the Outlook Mail API."/>
-    <parameter name="refreshToken" description="value of the refresh token."/>
+    <parameter name="refreshToken" description="The value of the refresh token."/>
     <parameter name="clientSecret"
                description="The value of the key that contains the client password."/>
     <parameter name="clientId"
