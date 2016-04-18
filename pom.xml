@@ -133,15 +133,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-   <!-- <scm>
-        <connection>scm:git:https://github.com/wso2-extensions/esb-connector-outlookmail.git
-        </connection>
-        <url>https://github.com/wso2-extensions/esb-connector-outlookmail.git</url>
-        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-outlookmail
-        </developerConnection>
-        <tag>HEAD</tag>
-    </scm>-->
-    <build>
+       <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
