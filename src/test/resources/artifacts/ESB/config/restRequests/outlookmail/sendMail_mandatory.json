@@ -10,5 +10,7 @@
   "intervalTime":"%s(intervalTime)",
   "accessToken":"%s(accessToken)",
   "toRecipients":[{"EmailAddress":{"Address": "vsvivevives@gmail.com"}}],
-  "subject":"%s(subject)"
+  "subject":"%s(subject)",
+  "messageContentType":"%s(messageContentType)",
+  "content":"%s(content)"
 }
