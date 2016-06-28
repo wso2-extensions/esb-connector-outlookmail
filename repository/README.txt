@@ -1,2 +1,2 @@
-Copy wso2esb-4.9.0.zip file here
+Copy wso2esb-5.0.0-BETA.zip file here
 
