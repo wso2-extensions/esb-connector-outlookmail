@@ -39,7 +39,7 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
 	 */
 	@BeforeClass(alwaysRun = true)
 	public void setEnvironment() throws Exception {
-		init("outlookmail-connector-1.0.1");
+		init("outlookmail-connector-1.0.2-SNAPSHOT");
 
 		esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
 		esbRequestHeadersMap.put("Content-Type", "application/json");
