@@ -8,6 +8,6 @@
   "redirectUri":"%s(redirectUri)",
   "registryPath":"%s(registryPath)",
   "intervalTime":"%s(intervalTime)",
-  "accessToken":" ",
+  "accessToken":"",
   "messageId":"%s(messageId)"
 }

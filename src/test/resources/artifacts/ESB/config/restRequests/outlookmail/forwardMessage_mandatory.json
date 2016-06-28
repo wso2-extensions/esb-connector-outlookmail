@@ -8,6 +8,7 @@
   "redirectUri":"%s(redirectUri)",
   "registryPath":"%s(registryPath)",
   "intervalTime":"%s(intervalTime)",
-  "accessToken":"",
+  "accessToken":"%s(accessToken)",
+  "toRecipients":[{"EmailAddress":{"Address": "vsvivevives@gmail.com"}}],
   "messageId":"%s(messageId)"
 }

@@ -126,12 +126,12 @@ under the License.
                         <messageId>{$ctx:messageId}</messageId>
                     </outlookmail.deleteMessage>
                 </case>
-                <case regex="urn:forwardAMessage">
-                    <outlookmail.forwardAMessage>
+                <case regex="urn:forwardMessage">
+                    <outlookmail.forwardMessage>
                         <messageId>{$ctx:messageId}</messageId>
                         <toRecipients>{$ctx:toRecipients}</toRecipients>
                         <comment>{$ctx:comment}</comment>
-                    </outlookmail.forwardAMessage>
+                    </outlookmail.forwardMessage>
                 </case>
                 <case regex="urn:moveMessage">
                     <outlookmail.moveMessage>

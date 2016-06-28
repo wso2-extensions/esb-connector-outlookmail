@@ -9,5 +9,7 @@
   "registryPath":"%s(registryPath)",
   "intervalTime":"%s(intervalTime)",
   "accessToken":"",
-  "messageId":"%s(messageId)"
+  "toRecipients":[{"EmailAddress":{"Address": "vsvivevives@gmail.com"}}],
+  "messageId":"%s(messageId)",
+  "comment":"%s(comment)"
 }
