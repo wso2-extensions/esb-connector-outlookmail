@@ -1,0 +1,42 @@
+{
+  "id": "http:\/\/wso2jsonschema.org",
+  "title": "root",
+  "$schema": "http:\/\/wso2.org\/json-schema\/wso2-data-mapper-v5.0.0\/schema#",
+  "attributes": {
+    "odata.context": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.context",
+      "type": "string"
+    },
+    "odata.id": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.id",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "Id": {
+      "id": "http:\/\/wso2jsonschema.org\/Id",
+      "type": "string"
+    },
+    "DisplayName": {
+      "id": "http:\/\/wso2jsonschema.org\/DisplayName",
+      "type": "string"
+    },
+    "ParentFolderId": {
+      "id": "http:\/\/wso2jsonschema.org\/ParentFolderId",
+      "type": "string"
+    },
+    "ChildFolderCount": {
+      "id": "http:\/\/wso2jsonschema.org\/ChildFolderCount",
+      "type": "number"
+    },
+    "UnreadItemCount": {
+      "id": "http:\/\/wso2jsonschema.org\/UnreadItemCount",
+      "type": "number"
+    },
+    "TotalItemCount": {
+      "id": "http:\/\/wso2jsonschema.org\/TotalItemCount",
+      "type": "number"
+    }
+  },
+  "type": "object"
+}

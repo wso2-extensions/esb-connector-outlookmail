@@ -1,0 +1,58 @@
+{
+  "id": "http:\/\/wso2jsonschema.org",
+  "title": "root",
+  "$schema": "http:\/\/wso2.org\/json-schema\/wso2-data-mapper-v5.0.0\/schema#",
+  "attributes": {
+    "odata.context": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.context",
+      "type": "string"
+    },
+    "odata.type": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.type",
+      "type": "string"
+    },
+    "odata.id": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.id",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "Id": {
+      "id": "http:\/\/wso2jsonschema.org\/Id",
+      "type": "string"
+    },
+    "LastModifiedDateTime": {
+      "id": "http:\/\/wso2jsonschema.org\/LastModifiedDateTime",
+      "type": "string"
+    },
+    "Name": {
+      "id": "http:\/\/wso2jsonschema.org\/Name",
+      "type": "string"
+    },
+    "ContentType": {
+      "id": "http:\/\/wso2jsonschema.org\/ContentType",
+      "type": "string"
+    },
+    "Size": {
+      "id": "http:\/\/wso2jsonschema.org\/Size",
+      "type": "number"
+    },
+    "IsInline": {
+      "id": "http:\/\/wso2jsonschema.org\/IsInline",
+      "type": "boolean"
+    },
+    "ContentId": {
+      "id": "http:\/\/wso2jsonschema.org\/ContentId",
+      "type": "null"
+    },
+    "ContentLocation": {
+      "id": "http:\/\/wso2jsonschema.org\/ContentLocation",
+      "type": "null"
+    },
+    "ContentBytes": {
+      "id": "http:\/\/wso2jsonschema.org\/ContentBytes",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
