@@ -1,0 +1,72 @@
+{
+  "id": "http:\/\/wso2jsonschema.org",
+  "title": "root",
+  "$schema": "http:\/\/wso2.org\/json-schema\/wso2-data-mapper-v5.0.0\/schema#",
+  "attributes": {
+    "odata.context": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.context",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "value": {
+      "id": "http:\/\/wso2jsonschema.org\/value",
+      "type": "array",
+      "items": [
+        {
+          "id": "http:\/\/wso2jsonschema.org\/value\/0",
+          "type": "object",
+          "properties": {
+            "Id": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/Id",
+              "type": "string"
+            },
+            "LastModifiedDateTime": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/LastModifiedDateTime",
+              "type": "string"
+            },
+            "Name": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/Name",
+              "type": "string"
+            },
+            "ContentType": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/ContentType",
+              "type": "string"
+            },
+            "Size": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/Size",
+              "type": "number"
+            },
+            "IsInline": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/IsInline",
+              "type": "boolean"
+            },
+            "ContentId": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/ContentId",
+              "type": "null"
+            },
+            "ContentLocation": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/ContentLocation",
+              "type": "null"
+            },
+            "ContentBytes": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/ContentBytes",
+              "type": "string"
+            }
+          },
+          "attributes": {
+            "odata.type": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/odata.type",
+              "type": "string"
+            },
+            "odata.id": {
+              "id": "http:\/\/wso2jsonschema.org\/value\/0\/odata.id",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object"
+}

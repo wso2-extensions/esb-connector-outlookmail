@@ -1,0 +1,204 @@
+{
+  "id": "http:\/\/wso2jsonschema.org",
+  "title": "root",
+  "$schema": "http:\/\/wso2.org\/json-schema\/wso2-data-mapper-v5.0.0\/schema#",
+  "attributes": {
+    "odata.context": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.context",
+      "type": "string"
+    },
+    "odata.id": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.id",
+      "type": "string"
+    },
+    "odata.etag": {
+      "id": "http:\/\/wso2jsonschema.org\/odata.etag",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "Id": {
+      "id": "http:\/\/wso2jsonschema.org\/Id",
+      "type": "string"
+    },
+    "CreatedDateTime": {
+      "id": "http:\/\/wso2jsonschema.org\/CreatedDateTime",
+      "type": "string"
+    },
+    "LastModifiedDateTime": {
+      "id": "http:\/\/wso2jsonschema.org\/LastModifiedDateTime",
+      "type": "string"
+    },
+    "ChangeKey": {
+      "id": "http:\/\/wso2jsonschema.org\/ChangeKey",
+      "type": "string"
+    },
+    "ReceivedDateTime": {
+      "id": "http:\/\/wso2jsonschema.org\/ReceivedDateTime",
+      "type": "string"
+    },
+    "SentDateTime": {
+      "id": "http:\/\/wso2jsonschema.org\/SentDateTime",
+      "type": "string"
+    },
+    "HasAttachments": {
+      "id": "http:\/\/wso2jsonschema.org\/HasAttachments",
+      "type": "boolean"
+    },
+    "InternetMessageId": {
+      "id": "http:\/\/wso2jsonschema.org\/InternetMessageId",
+      "type": "string"
+    },
+    "Subject": {
+      "id": "http:\/\/wso2jsonschema.org\/Subject",
+      "type": "string"
+    },
+    "Body": {
+      "id": "http:\/\/wso2jsonschema.org\/Body",
+      "type": "object",
+      "properties": {
+        "ContentType": {
+          "id": "http:\/\/wso2jsonschema.org\/Body\/ContentType",
+          "type": "string"
+        },
+        "Content": {
+          "id": "http:\/\/wso2jsonschema.org\/Body\/Content",
+          "type": "string"
+        }
+      }
+    },
+    "BodyPreview": {
+      "id": "http:\/\/wso2jsonschema.org\/BodyPreview",
+      "type": "string"
+    },
+    "Importance": {
+      "id": "http:\/\/wso2jsonschema.org\/Importance",
+      "type": "string"
+    },
+    "ParentFolderId": {
+      "id": "http:\/\/wso2jsonschema.org\/ParentFolderId",
+      "type": "string"
+    },
+    "Sender": {
+      "id": "http:\/\/wso2jsonschema.org\/Sender",
+      "type": "object",
+      "properties": {
+        "EmailAddress": {
+          "id": "http:\/\/wso2jsonschema.org\/Sender\/EmailAddress",
+          "type": "object",
+          "properties": {
+            "Name": {
+              "id": "http:\/\/wso2jsonschema.org\/Sender\/EmailAddress\/Name",
+              "type": "string"
+            },
+            "Address": {
+              "id": "http:\/\/wso2jsonschema.org\/Sender\/EmailAddress\/Address",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "From": {
+      "id": "http:\/\/wso2jsonschema.org\/From",
+      "type": "object",
+      "properties": {
+        "EmailAddress": {
+          "id": "http:\/\/wso2jsonschema.org\/From\/EmailAddress",
+          "type": "object",
+          "properties": {
+            "Name": {
+              "id": "http:\/\/wso2jsonschema.org\/From\/EmailAddress\/Name",
+              "type": "string"
+            },
+            "Address": {
+              "id": "http:\/\/wso2jsonschema.org\/From\/EmailAddress\/Address",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ToRecipients": {
+      "id": "http:\/\/wso2jsonschema.org\/ToRecipients",
+      "type": "array",
+      "items": [
+        {
+          "id": "http:\/\/wso2jsonschema.org\/ToRecipients\/0",
+          "type": "object",
+          "properties": {
+            "EmailAddress": {
+              "id": "http:\/\/wso2jsonschema.org\/ToRecipients\/0\/EmailAddress",
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "id": "http:\/\/wso2jsonschema.org\/ToRecipients\/0\/EmailAddress\/Name",
+                  "type": "string"
+                },
+                "Address": {
+                  "id": "http:\/\/wso2jsonschema.org\/ToRecipients\/0\/EmailAddress\/Address",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "CcRecipients": {
+      "id": "http:\/\/wso2jsonschema.org\/CcRecipients",
+      "type": "array",
+      "items": [
+        {
+          "id": "http:\/\/wso2jsonschema.org\/CcRecipients\/0",
+          "type": "object",
+          "properties": {
+            "EmailAddress": {
+              "id": "http:\/\/wso2jsonschema.org\/CcRecipients\/0\/EmailAddress",
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "id": "http:\/\/wso2jsonschema.org\/CcRecipients\/0\/EmailAddress\/Name",
+                  "type": "string"
+                },
+                "Address": {
+                  "id": "http:\/\/wso2jsonschema.org\/CcRecipients\/0\/EmailAddress\/Address",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ConversationId": {
+      "id": "http:\/\/wso2jsonschema.org\/ConversationId",
+      "type": "string"
+    },
+    "IsDeliveryReceiptRequested": {
+      "id": "http:\/\/wso2jsonschema.org\/IsDeliveryReceiptRequested",
+      "type": "null"
+    },
+    "IsReadReceiptRequested": {
+      "id": "http:\/\/wso2jsonschema.org\/IsReadReceiptRequested",
+      "type": "boolean"
+    },
+    "IsRead": {
+      "id": "http:\/\/wso2jsonschema.org\/IsRead",
+      "type": "boolean"
+    },
+    "IsDraft": {
+      "id": "http:\/\/wso2jsonschema.org\/IsDraft",
+      "type": "boolean"
+    },
+    "WebLink": {
+      "id": "http:\/\/wso2jsonschema.org\/WebLink",
+      "type": "string"
+    },
+    "InferenceClassification": {
+      "id": "http:\/\/wso2jsonschema.org\/InferenceClassification",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

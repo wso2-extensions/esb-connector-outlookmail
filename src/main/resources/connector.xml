@@ -24,6 +24,9 @@
         <dependency component="folders"/>
         <dependency component="messages"/>
         <description>WSO2 ESB Connector Library for outlookmail REST API.</description>
+        <authenticationInfo>
+            https://docs.wso2.com/display/ESBCONNECTORS/Configuring+Outlook+Mail+Operations
+        </authenticationInfo>
     </component>
     <icon>icon/icon.png</icon>
 </connector>
