@@ -39,7 +39,10 @@ public class OutLookMailConnectorIntegrationTest extends ConnectorIntegrationTes
 	 */
 	@BeforeClass(alwaysRun = true)
 	public void setEnvironment() throws Exception {
-		init("outlookmail-connector-1.0.3-SNAPSHOT");
+		String connectorName = System.getProperty("connector_name") + "-connector-" +
+				System.getProperty("connector_version") + ".zip";
+		addCertificatesToEIKeyStore("client-truststore.jks", "wso2carbon");
+		init(connectorName);
 
 		esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
 		esbRequestHeadersMap.put("Content-Type", "application/json");
