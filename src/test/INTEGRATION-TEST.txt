@@ -11,48 +11,23 @@ Tested Platform:
 
  - Microsoft WINDOWS V-7
  - UBUNTU 14.04, Mac OSx 10.9
- - WSO2 ESB 4.9.0, 5.0.0-BETA
+ - WSO2 EI 6.5.0
 
 STEPS:
 
-1. Download ESB 5.0.0-BETA from official website and extract the ESB and add "-XX:-UseSplitVerifier" under $JVM_MEM_OPTS into {ESB_HOME}/bin/wso2server.sh.
+1. Download EI 6.5.0 from official website and place the zip file into {EI_CONNECTOR_HOME}/repository folder.
 
-2.Follow the below mentioned steps for adding valid certificate to access outlook API over https.
+2. Extract the certificate from browser(Mozilla Firefox) by navigating to https://outlook.office.com/api and place it into {EI_CONNECTOR_HOME}/repository folder.
 
-     	i)   Extract the certificate from browser(Mozilla Firefox) by navigating to https://outlook.office.com/api
-     	ii)  Go to new ESB 5.0.0-BETA folder and place the downloaded certificate in both "<ESB_HOME>/repository/resources/security/" and "{OutlookMail_Connector_Home}/src/test/resources/keystores/products/" folders.
-     	iii) Navigate to "<ESB_HOME>/repository/resources/security/" using command prompt and execute keytool -importcert -file CERT_FILE_NAME -keystore client-truststore.jks -alias "CERT_NAME" in command line to import outlookMail certificate in to keystore.
-     		 Give "wso2carbon" as password. Press "Y" to complete certificate import process.
-
-     		 NOTE : CERT_FILE_NAME is the file name which was extracted from outlook. (e.g. *.outlook.com)
-     			    CERT_NAME is an arbitrary name for the certificate. (e.g. outlook)
-
-     	iv)  Navigate to "{OutlookMail_Connector_Home}/src/test/resources/keystores/products/" using command prompt and execute keytool -importcert -file CERT_FILE_NAME -keystore wso2carbon.jks -alias "CERT_NAME" in command line to import Shopify certificate in to keystore.
-     		Give "wso2carbon" as password.
-
-     		NOTE : CERT_FILE_NAME is the file name which was extracted from outlook, change it accordingly. (e.g. *.outlook.com)
-     			   CERT_NAME is an arbitrary name for the certificate. (e.g. outlook)
-
-3. The ESB should be configured as below;
-   	Please make sure that the below mentioned Axis configurations are enabled (\repository\conf\axis2\axis2.xml).
-
-    <messageFormatter contentType="application/x-www-form-urlencoded"
-                             class="org.apache.axis2.transport.http.XFormURLEncodedFormatter"/>
-   	<messageBuilder contentType="application/x-www-form-urlencoded"
-                           class="org.apache.synapse.commons.builders.XFormURLEncodedBuilder"/>
-
-   	Note: Add the above message formatter and the corresponding message builder only if they are not available in the axis configurations.
-
-
-4. Set authorization details:
+3. Set authorization details:
   1. Sign up for an Office 365 account (Go to https://products.office.com/en-us/business/compare-office-365-for-business-plans).
 
   2. Associate an Azure subscription with Office 365 account (Azure AD).(Go to https://msdn.microsoft.com/office/office365/howto/setup-development-environment#bk_AssociateNewAzureSubscription)
 
-  3. Register a new application in the Azure classic portal.(Go to https://azure.microsoft.com/en-us/documentation/articles/active-directory-integrating-applications/#BKMK_Native)
+  3. Register a new application in the Azure classic portal.(Go to https://azure.microsoft.com/en-us/documentation/articles/active-directory-integrating-applications/#BKMK_Native). Add Mail.Send and Mail.ReadWrite delegated permissons to the createad app.
 
 
-5. Update the property file at outlookmail.properties found in  to "{OutlookMail_Connector_Home}/src/test/resources/artifacts/ESB/connector/config/" as follows.
+4. Update the property file at outlookmail.properties found in  to "{OutlookMail_Connector_Home}/src/test/resources/artifacts/ESB/connector/config/" as follows.
 
 
        i)apiUrl                             -   The instance URL for your organization.
@@ -82,4 +57,4 @@ STEPS:
 
 
 5. Navigate to "{OutlookMail_Connector_Home}/" and run the following command.
-      $ mvn clean install
+      ```mvn clean install -Dskip-tests=false```
