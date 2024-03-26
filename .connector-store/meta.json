@@ -1,0 +1,12 @@
+{
+    "name": "OutlookMail",
+    "owner": "WSO2",
+    "category": "Communication",
+    "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/Outlook+Mail+Connector",
+    "description": "The Outlook Mail connector allows you to access the Outlook Mail API through WSO2 ESB. The Outlook Mail API lets you read, create, and send messages and attachments, view and respond to event messages, and manage folders that are secured by Azure Active Directory in Office 365.",
+    "status": "Active",
+    "labels": [
+        "Communication"
+    ],
+    "releases": []
+}
