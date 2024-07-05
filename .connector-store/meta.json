@@ -10,7 +10,7 @@
     ],
     "releases": [
         {
-            "tagName": "v1.0.3",
+            "tagName": "org.wso2.carbon.connector.outlookmail-1.0.3",
             "products": [
                 "EI 6.5.0"
             ],
